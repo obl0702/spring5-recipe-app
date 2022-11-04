@@ -1,14 +1,9 @@
 package com.ongbl.controllers;
 
-import com.ongbl.domain.Category;
-import com.ongbl.domain.UnitOfMeasure;
-import com.ongbl.repositories.CategoryRepository;
-import com.ongbl.repositories.UnitOfMeasureRepository;
+import com.ongbl.services.RecipeService;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-
-import javax.swing.text.html.Option;
-import java.util.Optional;
 
 /**
  * @created: 4/11/2022
@@ -17,21 +12,17 @@ import java.util.Optional;
 @Controller
 public class IndexController {
 
-    private CategoryRepository categoryRepository;
-    private UnitOfMeasureRepository unitOfMeasureRepository;
+    private final RecipeService recipeService;
 
-    public IndexController(CategoryRepository categoryRepository, UnitOfMeasureRepository unitOfMeasureRepository) {
-        this.categoryRepository = categoryRepository;
-        this.unitOfMeasureRepository = unitOfMeasureRepository;
+    public IndexController(RecipeService recipeService) {
+        this.recipeService = recipeService;
     }
 
-    @RequestMapping({"","/","/index"})
-    public String getIndexPage(){
-        Optional<Category> categoryOptional = categoryRepository.findByDescription("American");
-        Optional<UnitOfMeasure> unitOfMeasureOptional = unitOfMeasureRepository.findByDescription("Teaspoon");
+    @RequestMapping({"", "/", "/index"})
+    public String getIndexPage(Model model) {
 
-        System.out.println("categoryOptional: " + categoryOptional.get().getId());
-        System.out.println("unitOfMeasureOptional: " + unitOfMeasureOptional.get().getId());
+        model.addAttribute("recipes", recipeService.getRecipes());
+
         return "index";
     }
 }
