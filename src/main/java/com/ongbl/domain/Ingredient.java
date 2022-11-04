@@ -20,7 +20,7 @@ public class Ingredient {
     //@JoinColumn(name = "recipe_id")
     private Recipe recipe;
 
-    @OneToOne
+    @OneToOne(fetch = FetchType.EAGER)
     private UnitOfMeasure uom;
 
     public UnitOfMeasure getUom() {
