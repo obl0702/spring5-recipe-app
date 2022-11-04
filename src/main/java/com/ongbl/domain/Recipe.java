@@ -28,6 +28,9 @@ public class Recipe {
     @Lob
     private Byte[] images;
 
+    @Enumerated(value = EnumType.STRING)
+    private Difficulty difficulty;
+
     @OneToOne(cascade = CascadeType.ALL)
     private Notes notes;
 
@@ -109,6 +112,14 @@ public class Recipe {
 
     public void setImages(Byte[] images) {
         this.images = images;
+    }
+
+    public Difficulty getDifficulty() {
+        return difficulty;
+    }
+
+    public void setDifficulty(Difficulty difficulty) {
+        this.difficulty = difficulty;
     }
 
     public Notes getNotes() {
