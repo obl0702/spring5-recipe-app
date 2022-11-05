@@ -9,6 +9,7 @@ import java.math.BigDecimal;
  * @author: boonloong
  */
 @Data
+@EqualsAndHashCode(exclude = {"recipe"})
 @Entity
 public class Ingredient {
 
