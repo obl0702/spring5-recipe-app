@@ -9,7 +9,8 @@ import lombok.*;
  * @created: 4/11/2022
  * @author: boonloong
  */
-@Data
+@Getter
+@Setter
 @Entity
 public class Recipe {
 
@@ -45,8 +46,10 @@ public class Recipe {
     private Set<Category> categories = new HashSet<>();
 
     public void setNotes(Notes notes) {
-        this.notes = notes;
-        notes.setRecipe(this);
+        if (notes != null) {
+            this.notes = notes;
+            notes.setRecipe(this);
+        }
     }
 
     public Recipe addIngredient(Ingredient ingredient){

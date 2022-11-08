@@ -10,7 +10,8 @@ import lombok.*;
  * @created: 4/11/2022
  * @author: boonloong
  */
-@Data
+@Getter
+@Setter
 @Entity
 public class UnitOfMeasure {
 

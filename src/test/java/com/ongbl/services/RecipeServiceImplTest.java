@@ -7,6 +7,7 @@ import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import java.util.HashSet;
+import java.util.Optional;
 import java.util.Set;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
@@ -39,6 +40,16 @@ public class RecipeServiceImplTest {
 
         assertEquals(recipes.size(), 1);
         verify(recipeRepository, times(1)).findAll();
+    }
+
+    @Test
+    public Recipe findById(Long l) throws Exception {
+        Optional<Recipe> recipeOptional = recipeRepository.findById(l);
+
+        if(!recipeOptional.isPresent()){
+            throw new RuntimeException("Recipe Not Found.");
+        }
+        return recipeOptional.get();
     }
 
 }
